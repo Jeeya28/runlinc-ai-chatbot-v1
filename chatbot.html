@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Runlinc AI Chatbot</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#f4f4f4;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.chat-container{
+background:white;
+padding:20px;
+width:400px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h3{
+text-align:center;
+}
+
+.chat-box{
+height:200px;
+overflow-y:auto;
+border:1px solid #ddd;
+padding:10px;
+margin-bottom:10px;
+}
+
+.user{
+color:blue;
+}
+
+.bot{
+color:green;
+}
+
+input{
+width:75%;
+padding:8px;
+}
+
+button{
+padding:8px 12px;
+background:#007bff;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#0056b3;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="chat-container">
+
+<h3>Runlinc AI Chatbot</h3>
+<p>Chat with the AI Bot</p>
+
+<div class="chat-box" id="chatBox"></div>
+
+<input type="text" id="userInput" placeholder="Type your message...">
+<button onclick="chatBot()">Send</button>
+
+</div>
+
+<script>
+
+function chatBot(){
+
+let inputField = document.getElementById("userInput");
+let userText = inputField.value.trim().toLowerCase();
+let chatBox = document.getElementById("chatBox");
+
+if(userText === "") return;
+
+let botResponse = "I'm not sure what you mean.";
+
+if(userText.includes("hello") || userText.includes("hi")){
+botResponse = "Hello! How can I help you?";
+}
+
+else if(userText.includes("how are you")){
+botResponse = "I'm just a bot, but I'm doing great!";
+}
+
+else if(userText.includes("who are you")){
+botResponse = "I'm Runlinc AI, a simple chatbot built using HTML, CSS and JavaScript.";
+}
+
+else if(userText.includes("help")){
+botResponse = "You can say hello, ask who I am, or say bye.";
+}
+
+else if(userText.includes("bye")){
+botResponse = "Goodbye! Have a great day!";
+}
+
+chatBox.innerHTML += `<p class="user"><b>You:</b> ${userText}</p>`;
+chatBox.innerHTML += `<p class="bot"><b>Bot:</b> ${botResponse}</p>`;
+
+inputField.value = "";
+chatBox.scrollTop = chatBox.scrollHeight;
+
+}
+
+document.getElementById("userInput")
+.addEventListener("keypress", function(event){
+if(event.key === "Enter"){
+chatBot();
+}
+});
+
+</script>
+
+</body>
+</html>
